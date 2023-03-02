@@ -1,11 +1,11 @@
 package com.codeoftheweb.salvo;
 
+import com.codeoftheweb.salvo.model.Player;
+import com.codeoftheweb.salvo.repositories.PlayerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class SalvoApplication {
