@@ -1,7 +1,7 @@
 
 
-fetch( "http://localhost:8080/players").then((response) => {
-  console.log('Request succeeded: ' + response.statusText);
-}).catch((error) => {
-  console.log( "Request failed: " + error.message );
+fetch( "http://localhost:8080/api/players")
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("hola", data)
 });
