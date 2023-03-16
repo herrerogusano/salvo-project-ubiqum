@@ -1,7 +1,7 @@
 
 
 let array_list=[];
-const url = 'http://localhost:8080/api/players';
+const url = 'http://localhost:8080/players';
 async function showPlayers()  {
     fetch(url)
           .then(response => {
@@ -28,29 +28,7 @@ async function showPlayers()  {
         }
     }
 
-    /*const form = document.getElementById('form');
 
-
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const formDataObj = Object.fromEntries(formData.entries());
-              let player = formDataObj;*/
-
-
-
-      /*fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
-    });*/
 
 window.addEventListener("load", () => {
   function sendData() {
