@@ -12,6 +12,7 @@ async function showPlayers()  {
             }
           })
           .then(data => {
+          console.log(data)
             array_list=data;
             populate(array_list)
           });
@@ -27,21 +28,65 @@ async function showPlayers()  {
         }
     }
 
-    const data = { username: "example" };
-const newPlayer = async (data) => {
-    fetch(url, {
-          method: "POST", // or 'PUT'
+    /*const form = document.getElementById('form');
 
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-}
 
-//newPlayer();
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const formDataObj = Object.fromEntries(formData.entries());
+              let player = formDataObj;*/
+
+
+
+      /*fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    });*/
+
+window.addEventListener("load", () => {
+  function sendData() {
+    const XHR = new XMLHttpRequest();
+
+    // Bind the FormData object and the form element
+    const FD = new FormData(form);
+
+    // Define what happens on successful data submission
+    XHR.addEventListener("load", (event) => {
+      alert(event.target.responseText);
+    });
+
+    // Define what happens in case of error
+    XHR.addEventListener("error", (event) => {
+      alert('Oops! Something went wrong.');
+    });
+
+    // Set up our request
+    XHR.open("POST", url);
+
+    // The data sent is what the user provided in the form
+    XHR.send(FD);
+  }
+
+  // Get the form element
+  const form = document.getElementById("form");
+
+  // Add 'submit' event handler
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    sendData();
+  });
+});
+
+
+
 showPlayers();

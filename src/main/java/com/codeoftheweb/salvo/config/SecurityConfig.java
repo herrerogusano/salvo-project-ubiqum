@@ -21,7 +21,8 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource
+                .cors(Customizer.withDefaults())// by default uses a Bean by the name of corsConfigurationSource
+                .csrf().disable()
                 //.authorizeRequests(auth -> auth
                         //.anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
@@ -32,8 +33,8 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:63342"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(List.of("Authorization"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
