@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/players")
+@RequestMapping("/api")
 @CrossOrigin(origins="http://localhost:8080")
 
 public class AppController {
@@ -24,14 +24,19 @@ public class AppController {
 
     @Autowired
     public GameRepository gameRepository;
+
     @CrossOrigin
-    @GetMapping
+    @GetMapping("/players")
     public List<Player> getPlayers() {
         return playerRepository.findAll();
     }
 
 
-
+    @CrossOrigin
+    @GetMapping("/games")
+    public List<Game> getGames() {
+        return gameRepository.findAll();
+    }
 
 
    @CrossOrigin
