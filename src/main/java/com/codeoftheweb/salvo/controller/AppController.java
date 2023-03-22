@@ -24,19 +24,14 @@ public class AppController {
 
     @Autowired
     public GameRepository gameRepository;
-
     @CrossOrigin
-    @GetMapping("/players")
+    @GetMapping
     public List<Player> getPlayers() {
         return playerRepository.findAll();
     }
 
 
-    //@CrossOrigin
-   // @GetMapping("/games")
-    //public List<Game> getGames() {
-      //  return gameRepository.findAll();
-   // }
+
 
 
    @CrossOrigin
