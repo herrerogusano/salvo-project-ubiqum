@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/players")
+@RequestMapping("/api")
 @CrossOrigin(origins="http://localhost:8080")
 
 public class AppController {
@@ -25,7 +25,8 @@ public class AppController {
     @Autowired
     public GameRepository gameRepository;
     @CrossOrigin
-    @GetMapping
+   // @RequestMapping(name = "api/players", method = RequestMethod.GET)
+    @GetMapping("/players")
     public List<Player> getPlayers() {
         return playerRepository.findAll();
     }
@@ -35,7 +36,8 @@ public class AppController {
 
 
    @CrossOrigin
-   @RequestMapping(name = "/players", method = RequestMethod.POST)
+   //@RequestMapping(name = "/players", method = RequestMethod.POST)
+   @PostMapping("/players")
    public ResponseEntity<String> createPlayer(@RequestParam String userName){
        if (userName.isEmpty()) {
            return new ResponseEntity<>("No name given", HttpStatus.FORBIDDEN);
@@ -45,6 +47,13 @@ public class AppController {
        return new ResponseEntity<>("Name added", HttpStatus.CREATED);
 
    }
+
+    @CrossOrigin
+    // @RequestMapping(name = "api/players", method = RequestMethod.GET)
+    @GetMapping("/games")
+    public List<Game> getGames() {
+        return gameRepository.findAll();
+    }
 
 }
 

@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @SpringBootApplication
@@ -29,7 +30,7 @@ public class SalvoApplication {
 			playerRepository.save(new Player("Michelle"));
 
 			// Games
-			Game game1 = new Game(new Date());
+			Game game1 = new Game(LocalDateTime.now());
 
 			gameRepository.save(game1);
 		};
