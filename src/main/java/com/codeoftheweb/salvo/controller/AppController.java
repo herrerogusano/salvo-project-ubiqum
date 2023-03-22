@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/players")
 @CrossOrigin(origins="http://localhost:8080")
 
 public class AppController {
@@ -32,11 +32,11 @@ public class AppController {
     }
 
 
-    @CrossOrigin
-    @GetMapping("/games")
-    public List<Game> getGames() {
-        return gameRepository.findAll();
-    }
+    //@CrossOrigin
+   // @GetMapping("/games")
+    //public List<Game> getGames() {
+      //  return gameRepository.findAll();
+   // }
 
 
    @CrossOrigin
