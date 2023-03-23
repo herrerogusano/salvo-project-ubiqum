@@ -1,36 +1,41 @@
 package com.codeoftheweb.salvo.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "games")
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Game {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
-
+    public Game() { }
 
     public Game(LocalDateTime localDateTime) {
         this.creationDate = localDateTime;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
 
-
-
-
-
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
 }

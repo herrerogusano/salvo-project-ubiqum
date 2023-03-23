@@ -1,25 +1,31 @@
 package com.codeoftheweb.salvo.model;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import jakarta.persistence.*;
-
+import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name="players")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    @Column(name = "username", unique = true)
     private String userName;
+
+
+    public Player() { }
 
     public Player(String user) {
         userName = user;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String toString() {

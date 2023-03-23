@@ -1,7 +1,7 @@
 
 
 let array_list=[];
-const url = 'http://localhost:8080/api/players';
+const url = 'http://localhost:8080/players';
 async function showPlayers()  {
     fetch(url)
           .then(response => {
