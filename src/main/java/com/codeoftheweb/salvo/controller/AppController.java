@@ -1,6 +1,6 @@
 package com.codeoftheweb.salvo.controller;
-import com.codeoftheweb.salvo.model.Player;
 import com.codeoftheweb.salvo.model.Game;
+import com.codeoftheweb.salvo.model.Player;
 import com.codeoftheweb.salvo.repositories.GameRepository;
 import com.codeoftheweb.salvo.repositories.PlayerRepository;
 import org.springframework.http.HttpStatus;
