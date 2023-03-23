@@ -1,11 +1,10 @@
 package com.codeoftheweb.salvo.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
