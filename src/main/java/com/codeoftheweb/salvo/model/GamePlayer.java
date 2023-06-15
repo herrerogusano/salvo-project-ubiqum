@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 
@@ -24,7 +24,7 @@ public class GamePlayer {
     private Long id;
 
     @Column(name = "join_date")
-    private LocalDateTime joinDate;
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "game_id")
@@ -35,9 +35,9 @@ public class GamePlayer {
     private Player player;
 
 
-    public GamePlayer(Game game, Player player, LocalDateTime joinDate){
+    public GamePlayer(Game game, Player player){
         this.game = game;
         this.player = player;
-        this.joinDate = joinDate;
+        this.creationDate = getCreationDate();
     }
 }

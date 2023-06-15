@@ -5,20 +5,24 @@ import com.codeoftheweb.salvo.model.Game;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import com.codeoftheweb.salvo.repositories.GameRepository;
 import com.codeoftheweb.salvo.repositories.PlayerRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins="http://localhost:8080")
-
+@RequiredArgsConstructor
 public class AppController {
 
     @Autowired
@@ -49,16 +53,29 @@ public class AppController {
 
    }
 
-    @CrossOrigin
     @GetMapping("/games")
-    public List<Game> getGames() {
-        return gameRepository.findAll();
+    public List<Object> getGames() {
+        List<Game> games = this.gameRepository.findAll();
+        return games.stream().map(this::makeMap).collect(Collectors.toList());
     }
 
-    @CrossOrigin
-    @GetMapping("/gameplayers")
-    public List<GamePlayer> getGamePlayers() {
-        return gamePlayerRepository.findAll();
+    private Map<String, Object> makeMap(Game game) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", game.getId());
+        map.put("created", game.getCreationDate());
+        map.put("gamePlayers", this.makeMapOfGamePlayers(game.getGamePlayers()));
+        return map;
+    }
+
+    private List<Object> makeMapOfGamePlayers(Set<GamePlayer> gamePlayers) {
+        return gamePlayers.stream()
+                .map(gamePlayer -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", gamePlayer.getId());
+                    map.put("player", gamePlayer.getPlayer());
+                    return map;
+                })
+                .collect(Collectors.toList());
     }
 
 }
