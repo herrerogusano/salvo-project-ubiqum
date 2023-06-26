@@ -27,10 +27,10 @@ public class SalvoApplication {
 	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository) {
 		return (args) -> {
 			// Players
-			Player player1 = new Player("Jack");
-			Player player2 = new Player("Chloe");
-			Player player3 = new Player("Kim");
-			Player player4 = new Player("David");
+			Player player1 = new Player("j.bauer@ctu.gov");
+			Player player2 = new Player("c.obrian@ctu.gov");
+			Player player3 = new Player("kim_bauer@gmail.com");
+			Player player4 = new Player("t.almeida@ctu.gov");
 			playerRepository.save(player1);
 			playerRepository.save(player2);
 			playerRepository.save(player3);

@@ -38,6 +38,6 @@ public class GamePlayer {
     public GamePlayer(Game game, Player player){
         this.game = game;
         this.player = player;
-        this.creationDate = getCreationDate();
+        this.creationDate = game.getCreationDate();
     }
 }

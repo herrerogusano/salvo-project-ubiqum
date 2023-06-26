@@ -1,6 +1,6 @@
 
 
-let array_list=[];
+/*let array_list=[];
 const url = 'http://localhost:8080/api/players';
 async function showPlayers()  {
     fetch(url)
@@ -65,6 +65,55 @@ window.addEventListener("load", () => {
   });
 });
 
+showPlayers();*/
+
+const textBox = document.querySelector('#newPlayer');
+
+    document.querySelector("button").addEventListener("click", () => {
+        if (!textBox.value) {
+            alert('No value is given');
+            return;
+        }
+        addPerson(textBox.value).then(_ => {
+            textBox.value = '';
+            location.reload();
+        });
+    });
 
 
-showPlayers();
+    const fetchJson = url =>
+        fetch(url).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.statusText);
+            }
+        });
+
+    fetchJson('http://localhost:8080/rest/players').then(json => {
+        json['_embedded']['players'].forEach(player => {
+            const listItem = document.createElement('li');
+            const listItemText = document.createTextNode(player['userName'])
+            listItem.appendChild(listItemText);
+            document.getElementById('playerList').appendChild(listItem);
+        })
+    }).catch(error => {
+        console.log(error);
+    });
+
+
+    const addPerson = (userName) =>
+      fetch('http://localhost:8080/api/players', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userName: userName }) // Wrap userName in an object
+      }).then(response => {
+        if (response.ok) {
+          alert('Person added successfully');
+        } else {
+          throw new Error('add person error ' + response.statusText);
+        }
+      });
